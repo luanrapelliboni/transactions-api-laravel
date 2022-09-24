@@ -68,7 +68,7 @@ class WalletController extends Controller
      *      ),
      *      @OA\Response(
      *          response=500,
-     *          description="Error store user",
+     *          description="Error updating wallet",
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="message",
