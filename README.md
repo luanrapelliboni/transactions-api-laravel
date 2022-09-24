@@ -26,7 +26,7 @@ To access services:
 - Mysql external port: 4306
 - HTTP external port: 8088
 
-To access Sagger documentation: 
+To access Swagger documentation: 
 - http://localhost:8088/api/documentation
 
 Postman Collection is in the project root folder.

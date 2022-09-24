@@ -455,7 +455,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error store user",
+                        "description": "Error updating wallet",
                         "content": {
                             "application/json": {
                                 "schema": {
