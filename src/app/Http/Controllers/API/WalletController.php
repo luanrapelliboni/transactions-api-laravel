@@ -29,6 +29,107 @@ class WalletController extends Controller
      *
      * @param  App\Http\Requests\WalletTransferRequest $request
      * @return \Illuminate\Http\Response
+     *
+     * @OA\Post(
+     *     path="/transfer",
+     *     operationId="transferBetwenWallet",
+     *     tags={"Wallet"},
+     *     summary="Transfer value between wallets",
+     *     description="Transfer value between wallets",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/WalletTransferRequest")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Wallet updated successfull"
+     *              ),
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="boolean",
+     *                  example="false"
+     *              ),
+     *              @OA\Property(
+     *                  property="code",
+     *                  type="integer",
+     *                  example="200"
+     *              ),
+     *              @OA\Property(
+     *                 property="results",
+     *                 type="object",
+     *                 example="null"
+     *              ),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error store user",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Error updating wallet."
+     *              ),
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="boolean",
+     *                  example="true"
+     *              ),
+     *              @OA\Property(
+     *                  property="code",
+     *                  type="integer",
+     *                  example="500"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="No payer with ID 1 | No payee with ID 1"
+     *              ),
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="boolean",
+     *                  example="true"
+     *              ),
+     *              @OA\Property(
+     *                  property="code",
+     *                  type="integer",
+     *                  example="404"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessible entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Wallet not found | insuficient funds | payer cannot be a seller"
+     *              ),
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="boolean",
+     *                  example="true"
+     *              ),
+     *              @OA\Property(
+     *                  property="code",
+     *                  type="integer",
+     *                  example="422"
+     *              ),
+     *          )
+     *      ),
+     * )
      */
     public function transfer(WalletTransferRequest $request)
     {
@@ -43,9 +144,9 @@ class WalletController extends Controller
 
         try {
             if ($this->walletService->transfer($payer, $payee, $request->value))
-                return $this->success("Wallet updated successfull", 200);
+                return $this->success("Wallet updated successfull", null, 200);
             else
-                return $this->error('An error occurred', 500);
+                return $this->error('Error updating wallet', 500);
         } catch (InsufficientFundsException $e) {
             return $this->error($e->getMessage(), 422);
         } catch (InvalidPayerException $e) {

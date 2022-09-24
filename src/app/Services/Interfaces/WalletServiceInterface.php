@@ -2,7 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-use App\Http\Requests\WalletTransferRequest;
 use App\Models\User;
 
 interface WalletServiceInterface

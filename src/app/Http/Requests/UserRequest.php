@@ -4,6 +4,42 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *  schema="UserReqyest",
+ *  title="UserRequest schema",
+ * 	@OA\Property(
+ * 		property="name",
+ * 		type="string",
+ *      example="John Doe"
+ * 	),
+ * 	@OA\Property(
+ * 		property="document",
+ * 		type="string",
+ *      example="11122233344"
+ * 	),
+ * 	@OA\Property(
+ * 		property="email",
+ * 		type="string",
+ *      example="john@doe.example.com"
+ * 	),
+ * 	@OA\Property(
+ * 		property="password",
+ * 		type="string",
+ *      example="1234"
+ * 	),
+ * 	@OA\Property(
+ * 		property="type",
+ * 		type="string",
+ *      example="CONSUMER or SELLER"
+ * 	),
+ *  @OA\Property(
+ *      property="balance",
+ *      type="string",
+ *      example="10.0"
+ *  )
+ * )
+ */
 class UserRequest extends FormRequest
 {
     /**

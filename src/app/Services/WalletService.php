@@ -23,6 +23,13 @@ class WalletService implements WalletServiceInterface
     }
 
     /**
+     * Transfer values between wallets
+     *
+     * @param \App\Models\User $payer
+     * @param \App\Models\User $payee
+     * @param decimal $value
+     * @return boolean
+     *
      * @throws InsufficientFundsException
      * @throws InvalidPayerException
      * @throws WalletNotFoundException
