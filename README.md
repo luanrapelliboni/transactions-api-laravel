@@ -11,6 +11,7 @@ To run project, in this root project folder:
 ```` 
 $ docker-compose exec php bash
 $ composer install
+$ php artisan key:generate
 $ php artisan migrate
 ````
 
